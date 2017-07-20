@@ -16,18 +16,10 @@ class App extends React.Component {
     return (
         <div>
           <input type="text" onChange={this.update.bind(this)}/>
+          <h1>{this.state.txt}</h1>
         </div>
       )
   }
-}
-
-App.propTypes = {
-  txt: React.PropTypes.string,
-  cat: React.PropTypes.number.isRequired
-}
-
-App.defaultProps = {
-  txt: "this is the default text"
 }
 
 export default App
