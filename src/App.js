@@ -1,38 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class App extends React.Component {
   constructor(){
     super();
-    this.state = {a: ''}
+    this.state = {val: 0}
+    this.update = this.update.bind(this)
   }
-  update( e ){
-    this.setState({
-      a: this.a.refs.input.value,
-      b: this.refs.b.value
-    })
+  update(){
+    this.setState({val: this.state.val + 1})
+  }
+  componentWillMount(){
+    console.log('componentWillMount')
   }
   render(){
-    return (
-      <div>
-          <Input
-            ref={ component => this.a = component }
-            update={this.update.bind(this)}
-          /> {this.state.a}
-          <hr />
-          <input
-            ref="b"
-            type="text"
-            onChange={this.update.bind(this)}
-          /> {this.state.b}
-      </div>
-    )
+    console.log('render')
+    return <button onClick={this.update}>{this.state.val}</button>
   }
-}
-
-class Input extends React.Component {
-  render(){
-    return <div><input ref="input" type="text" onChange={this.props.update}/></div>
+  componentDidMount(){
+    console.log('componentDidMount')
   }
 }
 
