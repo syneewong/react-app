@@ -4,29 +4,21 @@ import ReactDOM from 'react-dom';
 class App extends React.Component {
   constructor(){
     super();
-    this.state = {increasing: false}
+    this.state = {items: []}
   }
-  update(){
-    ReactDOM.render(
-      <App val={this.props.val+1} />,
-      document.getElementById('root'))
-  }
-  componentWillReceiveProps(nextProps){
-    this.setState({increasing: nextProps.val > this.props.val})
-  }
-  shouldComponentUpdate(nextProps, nextState){
-    return nextProps.val % 5 === 0; // See if it is a multiple of 5
+  componentWillMount(){
+    fetch ('http://swapi.co/api/people/?format=json') // get starwars data in a json format with ajax
+    .then ( response => response.json() )
+    .then ( ({results: items}) => this.setState({items}))
   }
   render(){
-    console.log(this.state.increasing)
-    return (
-      <button onClick={this.update.bind(this)}>
-        {this.props.val}
-      </button>
+    let items = this.state.items
+    return(
+      <div>
+        {items.map(item =>
+          <h4 key={item.name}>{item.name}</h4>)}
+      </div>
     )
-  }
-  componentDidUpdate(prevProps, prevState){
-    console.log(`prevProps: ${prevProps.val}`)
   }
 }
 
