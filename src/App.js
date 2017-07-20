@@ -1,9 +1,10 @@
 import React from 'react';
+import 'App.css';
 
 class App extends React.Component {
   constructor(){
     super();
-    this.state={
+    this.state = {
       input: '/* add your jsx here */',
       output: '',
       err: ''
