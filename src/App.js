@@ -17,4 +17,8 @@ App.propTypes = {
   cat: React.PropTypes.number.isRequired
 }
 
+App.defaultProps = {
+  txt: "this is the default text"
+}
+
 export default App
